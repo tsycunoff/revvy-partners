@@ -1,5 +1,6 @@
 
-import React from 'react';
+
+import * as React from 'react';
 import { RegistrationIcon } from './icons/RegistrationIcon';
 import { LinkIcon } from './icons/LinkIcon';
 import { RecommendIcon } from './icons/RecommendIcon';

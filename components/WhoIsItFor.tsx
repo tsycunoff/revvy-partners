@@ -1,5 +1,6 @@
 
-import React from 'react';
+
+import * as React from 'react';
 
 const TargetAudienceCard: React.FC<{ title: string; description: string }> = ({ title, description }) => (
     <div className="border-t border-gray-200 py-8">
