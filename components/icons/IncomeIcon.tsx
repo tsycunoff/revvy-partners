@@ -1,5 +1,5 @@
 
-import React from 'react';
+import * as React from 'react';
 
 export const IncomeIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   <svg

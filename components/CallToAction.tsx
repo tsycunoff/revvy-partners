@@ -217,12 +217,13 @@ const CallToAction: React.FC = () => {
 
                   <div>
                     <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                      Телефон
+                      Телефон *
                     </label>
                     <input
                       type="tel"
                       id="phone"
                       name="phone"
+                      required
                       value={formData.phone}
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#0D6EFD] focus:border-transparent transition-all duration-300"
@@ -294,12 +295,15 @@ const CallToAction: React.FC = () => {
 
                 <p className="text-xs text-gray-500 text-center">
                   Нажимая кнопку, вы соглашаетесь с{' '}
-                  <a href="#" className="text-[#0D6EFD] hover:underline">
+                  <a href="https://revvy.ai/privacy" target="_blank" rel="noopener noreferrer" className="text-[#0D6EFD] hover:underline">
                     политикой конфиденциальности
-                  </a>{' '}
-                  и{' '}
+                  </a>,{' '}
                   <a href="#" className="text-[#0D6EFD] hover:underline">
                     условиями партнерской программы
+                  </a>{' '}
+                  и даёте{' '}
+                  <a href="https://revvy.ai/consent-marketing-newsletter" target="_blank" rel="noopener noreferrer" className="text-[#0D6EFD] hover:underline">
+                    согласие на обработку персональных данных
                   </a>
                 </p>
               </form>

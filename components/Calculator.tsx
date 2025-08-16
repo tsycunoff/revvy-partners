@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 
 const AnimatedCounter: React.FC<{ value: number; format: (val: number) => string; duration?: number }> = ({ 
@@ -9,6 +8,7 @@ const AnimatedCounter: React.FC<{ value: number; format: (val: number) => string
   const [displayValue, setDisplayValue] = React.useState(0);
 
   React.useEffect(() => {
+    let animationFrameId: number;
     const startTime = Date.now();
     const startValue = displayValue;
     const targetValue = value;
@@ -24,11 +24,14 @@ const AnimatedCounter: React.FC<{ value: number; format: (val: number) => string
       setDisplayValue(currentValue);
 
       if (progress < 1) {
-        requestAnimationFrame(animate);
+        animationFrameId = requestAnimationFrame(animate);
       }
     };
 
     animate();
+
+    return () => cancelAnimationFrame(animationFrameId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value, duration]);
 
   return <span>{format(displayValue)}</span>;
@@ -72,7 +75,7 @@ const ResultCard: React.FC<{
 
 const Calculator: React.FC = () => {
   const [clients, setClients] = React.useState(10);
-  const [avgCheck, setAvgCheck] = React.useState(7000);
+  const [avgCheck, setAvgCheck] = React.useState(7500);
   const [isVisible, setIsVisible] = React.useState(false);
   
   const COMMISSION_RATE = 0.35;
@@ -90,7 +93,9 @@ const Calculator: React.FC = () => {
     const section = document.getElementById('calculator');
     if (section) observer.observe(section);
 
-    return () => observer.disconnect();
+    return () => {
+      if(section) observer.unobserve(section)
+    };
   }, []);
 
   const incomePerCohort = React.useMemo(() => {
@@ -118,7 +123,7 @@ const Calculator: React.FC = () => {
       return `${(value / 1000000).toFixed(1)}M ₽`;
     }
     if (value >= 1000) {
-      return `${(value / 1000).toFixed(0)}K ₽`;
+      return `${Math.round(value / 1000)}K ₽`;
     }
     return formatCurrency(value);
   };
@@ -159,7 +164,6 @@ const Calculator: React.FC = () => {
                 </label>
                 <div className="flex items-center bg-blue-50 px-4 py-2 rounded-xl border border-blue-200">
                   <span className="text-2xl font-extrabold text-[#0D6EFD]">{clients}</span>
-                  <span className="text-sm text-blue-600 ml-1">чел.</span>
                 </div>
               </div>
               
@@ -183,29 +187,30 @@ const Calculator: React.FC = () => {
                 </div>
               </div>
             </div>
+            
             <div className="space-y-4">
               <div className="flex justify-between items-baseline">
                 <label htmlFor="avgCheck" className="font-semibold text-gray-700 text-lg">
-                  Средний чек клиента
+                  Средний чек клиента, ₽
                 </label>
                 <div className="flex items-center bg-blue-50 px-4 py-2 rounded-xl border border-blue-200">
                   <span className="text-2xl font-extrabold text-[#0D6EFD]">
-                    {formatCurrencyWithSuffix(avgCheck)}
+                    <AnimatedCounter value={avgCheck} format={formatCurrency} />
                   </span>
                 </div>
               </div>
+              
               <div className="relative">
                 <input
                   id="avgCheck"
                   type="range"
                   min="5000"
                   max="10000"
-                  step="100"
                   value={avgCheck}
                   onChange={(e) => setAvgCheck(Number(e.target.value))}
                   className="w-full h-3 bg-gray-200 rounded-full appearance-none cursor-pointer slider"
                   style={{
-                    background: `linear-gradient(to right, #0D6EFD 0%, #0D6EFD ${((avgCheck - 5000) / 5000) * 100}%, #e5e7eb ${((avgCheck - 5000) / 5000) * 100}%, #e5e7eb 100%)`
+                    background: `linear-gradient(to right, #0D6EFD 0%, #0D6EFD ${((avgCheck - 5000) / (10000 - 5000)) * 100}%, #e5e7eb ${((avgCheck - 5000) / (10000 - 5000)) * 100}%, #e5e7eb 100%)`
                   }}
                 />
                 <div className="flex justify-between text-xs text-gray-500 mt-2">
@@ -216,57 +221,67 @@ const Calculator: React.FC = () => {
               </div>
             </div>
           </div>
-
-          {/* Results */}
-          <div className={`transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-            <h3 className="text-xl font-bold text-center text-gray-800 mb-8">
-              Ваш ежемесячный доход (накопительно)
-            </h3>
+          
+          {/* Results Section */}
+          <div className={`transition-all duration-500 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-4'}`}>
+            <div className="text-center mb-6">
+              <h3 className="text-2xl font-bold text-gray-900">Ваш ежемесячный доход</h3>
+              <p className="text-gray-600">При условии, что вы будете привлекать по {clients} клиентов ежемесячно.</p>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <ResultCard 
                 time="Через 3 месяца" 
                 value={incomeProjection.month3} 
-                delay={100} 
                 formatter={formatCurrency}
+                delay={100}
               />
               <ResultCard 
                 time="Через 6 месяцев" 
                 value={incomeProjection.month6} 
-                delay={200}
                 formatter={formatCurrency}
+                delay={200}
               />
               <ResultCard 
                 time="Через 12 месяцев" 
                 value={incomeProjection.month12} 
-                delay={300}
                 formatter={formatCurrency}
+                delay={300}
               />
               <ResultCard 
-                time="Суммарный доход за год" 
+                time="За первый год (накопительно)" 
                 value={incomeProjection.totalYear} 
                 isTotal 
-                delay={400}
                 formatter={formatCurrency}
+                delay={400}
               />
             </div>
           </div>
-          
-          <div className="mt-10 text-center">
-            <a
-              href="#join"
-              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#0D6EFD] to-blue-600 text-white font-bold rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
-            >
-              Начать зарабатывать
-              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-            </a>
-            <p className="mt-4 text-xs text-gray-500">
-              * Расчет является приблизительным и зависит от количества и среднего чека привлеченных клиентов.
-            </p>
-          </div>
         </div>
       </div>
+      <style>{`
+        .slider::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 24px;
+          height: 24px;
+          background: #0D6EFD;
+          border: 4px solid white;
+          box-shadow: 0 0 5px rgba(0,0,0,0.2);
+          cursor: pointer;
+          border-radius: 50%;
+          margin-top: -8px; /* To vertically center the thumb */
+        }
+
+        .slider::-moz-range-thumb {
+          width: 24px;
+          height: 24px;
+          background: #0D6EFD;
+          border: 4px solid white;
+          box-shadow: 0 0 5px rgba(0,0,0,0.2);
+          cursor: pointer;
+          border-radius: 50%;
+        }
+      `}</style>
     </section>
   );
 };

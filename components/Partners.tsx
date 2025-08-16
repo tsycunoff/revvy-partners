@@ -52,30 +52,30 @@ const Partners: React.FC = () => {
   const [currentTestimonial, setCurrentTestimonial] = React.useState(0);
 
   const partnerList = [
-    { name: "Starter", description: "Интегратор CRM-систем и IT-решений для автоматизации бизнеса." },
+    { name: "Starter", description: "Приложение для программ лояльности и маркетинга для ресторанов." },
     { name: "Get it", description: "Платформа для автоматизации доставки и логистики в ресторанном бизнесе." },
     { name: "Лемма", description: "Разработчик программного обеспечения для автоматизации ресторанного бизнеса и ритейла." },
-    { name: "Docs in Box", description: "Сервис электронного документооборота, специализирующийся на работе с поставщиками HoReCa." },
-    { name: "Нет монет", description: "Популярный сервис для безналичных чаевых и отзывов в сфере услуг." },
-    { name: "iiko", description: "Одна из ведущих систем автоматизации для ресторанов, кафе и баров." },
-    { name: "R-keeper", description: "Надежная и многофункциональная система управления для ресторанного бизнеса." },
-    { name: "Goulyash Tech", description: "IT-компания, создающая технологические решения для улучшения клиентского опыта." },
-    { name: "Яндекс", description: "Крупнейшая технологическая компания, предоставляющая бизнесу рекламные и облачные сервисы." },
-    { name: "Медрокет", description: "Платформа для автоматизации и управления медицинскими клиниками и центрами." },
-    { name: "Nekassir", description: "Разработчик облачных кассовых решений и систем учета для малого и среднего бизнеса." },
-    { name: "Premium Bonus", description: "Платформа для создания и управления программами лояльности и бонусами для клиентов." }
+    { name: "Docs in Box", description: "Сервис электронного документооборота для поставщиков HoReCa." },
+    { name: "Нет монет", description: "Сервис для безналичных чаевых и отзывов в сфере услуг." },
+    { name: "iiko", description: "Ведущая система автоматизации для ресторанов, кафе и баров." },
+    { name: "R-keeper", description: "Система управления для ресторанного бизнеса." },
+    { name: "Goulyash Tech", description: "IT-решения для улучшения клиентского опыта в общепите." },
+    { name: "Яндекс", description: "Технологическая компания, рекламные и облачные сервисы для бизнеса." },
+    { name: "Медрокет", description: "Платформа для автоматизации медицинских клиник и центров." },
+    { name: "Nekassir", description: "Облачные кассовые решения для малого и среднего бизнеса." },
+    { name: "Premium Bonus", description: "Платформа для программ лояльности и бонусных систем." }
   ];
 
   const testimonials = [
     {
-      name: "Александр К.",
+      name: "Алёна Т.",
       company: "Starter",
-      text: "За 6 месяцев работы привлек 25 клиентов. Средний доход составляет 180К в месяц. Отличная поддержка и прозрачная отчетность.",
+      text: "За 6 месяцев работы привлекла 25 клиентов. Средний доход составляет 180К в месяц. Отличная поддержка и прозрачная отчетность.",
       revenue: "180K ₽/мес"
     },
     {
-      name: "Мария Т.",
-      company: "Digital Agency",
+      name: "Ирина Ш.",
+      company: "Лемма",
       text: "Revvy отлично дополняет наши услуги. Клиенты довольны результатами, а мы получаем стабильный дополнительный доход.",
       revenue: "120K ₽/мес"
     },
@@ -84,6 +84,12 @@ const Partners: React.FC = () => {
       company: "Food-tech Blog",
       text: "Как блогер в сфере ресторанного бизнеса, легко рекомендую Revvy своей аудитории. Конверсия высокая, выплаты стабильные.",
       revenue: "95K ₽/мес"
+    },
+    {
+      name: "Эвсей Ш.",
+      company: "IT-консультант",
+      text: "Как специалист по внедрению IT для общепита, Revvy стал отличным дополнением к моим услугам. Клиенты ценят комплексный подход.",
+      revenue: "55K ₽/мес"
     }
   ];
 
@@ -121,16 +127,16 @@ const Partners: React.FC = () => {
                   <div className="text-sm text-gray-600">партнеров</div>
                 </div>
                 <div className="bg-white p-4 rounded-xl border border-gray-200 text-center">
-                  <div className="text-2xl font-extrabold text-[#0D6EFD]">₽2.5M</div>
-                  <div className="text-sm text-gray-600">выплачено</div>
+                  <div className="text-2xl font-extrabold text-[#0D6EFD]">35%</div>
+                  <div className="text-sm text-gray-600">до 35% комиссии</div>
                 </div>
                 <div className="bg-white p-4 rounded-xl border border-gray-200 text-center">
-                  <div className="text-2xl font-extrabold text-[#0D6EFD]">95%</div>
-                  <div className="text-sm text-gray-600">удовлетворены</div>
+                  <div className="text-2xl font-extrabold text-[#0D6EFD]">65к/мес</div>
+                  <div className="text-sm text-gray-600">средний доход партнёра</div>
                 </div>
                 <div className="bg-white p-4 rounded-xl border border-gray-200 text-center">
-                  <div className="text-2xl font-extrabold text-[#0D6EFD]">24/7</div>
-                  <div className="text-sm text-gray-600">поддержка</div>
+                  <div className="text-2xl font-extrabold text-[#0D6EFD]">1,4 млн</div>
+                  <div className="text-sm text-gray-600">Заработал топ-партнер</div>
                 </div>
               </div>
 
