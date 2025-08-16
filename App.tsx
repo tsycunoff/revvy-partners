@@ -1,7 +1,8 @@
 
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
+import PartnershipModelsOverview from './components/PartnershipModelsOverview';
 import HowItWorks from './components/HowItWorks';
 import Partners from './components/Partners';
 import Benefits from './components/Benefits';
@@ -12,7 +13,7 @@ import CallToAction from './components/CallToAction';
 import Footer from './components/Footer';
 
 const App: React.FC = () => {
-  React.useEffect(() => {
+  useEffect(() => {
     // Smooth scroll behavior
     document.documentElement.style.scrollBehavior = 'smooth';
     
@@ -49,6 +50,11 @@ const App: React.FC = () => {
         {/* Hero Section */}
         <section id="hero">
           <Hero />
+        </section>
+
+        {/* Partnership Models Overview */}
+        <section id="models-overview">
+          <PartnershipModelsOverview />
         </section>
 
         {/* How It Works Section */}

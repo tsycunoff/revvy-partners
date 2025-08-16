@@ -1,10 +1,10 @@
 
-import * as React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const Hero: React.FC = () => {
-  const heroRef = React.useRef<HTMLElement>(null);
+  const heroRef = useRef<HTMLElement>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!heroRef.current) return;
       
@@ -63,18 +63,19 @@ const Hero: React.FC = () => {
         </div>
 
         {/* Main Heading */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-gray-900 mb-6">
-          <span className="block animate-fade-in-up">Зарабатывайте до 35% с каждого платежа клиента*</span>
-          <span className="block bg-gradient-to-r from-[#0D6EFD] via-blue-600 to-indigo-600 bg-clip-text text-transparent animate-fade-in-up text-xl sm:text-2xl md:text-3xl font-bold mt-4" style={{ animationDelay: '0.2s' }}>
-            или фиксированное вознаграждение до 5 000 ₽ за рекомендацию
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-gray-900 mb-8">
+          <span className="block animate-fade-in-up">Зарабатывайте вместе с</span>
+          <span className="block bg-gradient-to-r from-[#0D6EFD] via-blue-600 to-indigo-600 bg-clip-text text-transparent animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+            Revvy
           </span>
         </h1>
 
         {/* Subtitle */}
         <p className="mt-6 max-w-3xl mx-auto text-lg md:text-xl text-gray-600 leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-          Выбирайте, как зарабатывать с Revvy:<br/>
-          <span className="font-semibold">— Рекомендуйте</span> и получайте разовое вознаграждение до 5 000 ₽ за каждого клиента<br/>
-          <span className="font-semibold">— Продавайте</span> и получайте до 35% с каждого платежа клиента пожизненно
+          Присоединяйтесь к нашей партнерской программе и получайте{' '}
+          <span className="font-bold text-[#0D6EFD]">до 35% пожизненно</span>{' '}
+          с каждого клиента или{' '}
+          <span className="font-bold text-green-600">до 5 000 ₽ за рекомендацию</span>
         </p>
 
         {/* Key Stats */}
@@ -84,7 +85,11 @@ const Hero: React.FC = () => {
             <div className="text-sm text-gray-600">комиссия*</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-extrabold text-[#0D6EFD]">🔒</div>
+            <div className="w-12 h-12 mx-auto bg-gradient-to-r from-[#0D6EFD] to-blue-600 rounded-xl flex items-center justify-center mb-2">
+              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+            </div>
             <div className="text-sm text-gray-600">закрепление сделок</div>
           </div>
           <div className="text-center">

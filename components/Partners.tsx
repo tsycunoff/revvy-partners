@@ -1,5 +1,5 @@
 
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface PartnerCardProps {
   name: string;
@@ -8,10 +8,10 @@ interface PartnerCardProps {
 }
 
 const PartnerCard: React.FC<PartnerCardProps> = ({ name, description, delay = 0 }) => {
-  const [isFlipped, setIsFlipped] = React.useState(false);
-  const [isVisible, setIsVisible] = React.useState(false);
+  const [isFlipped, setIsFlipped] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), delay);
     return () => clearTimeout(timer);
   }, [delay]);
@@ -49,7 +49,7 @@ const PartnerCard: React.FC<PartnerCardProps> = ({ name, description, delay = 0 
 };
 
 const Partners: React.FC = () => {
-  const [currentTestimonial, setCurrentTestimonial] = React.useState(0);
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
   const partnerList = [
     { name: "Starter", description: "Приложение для программ лояльности и маркетинга для ресторанов." },
@@ -63,7 +63,11 @@ const Partners: React.FC = () => {
     { name: "Яндекс", description: "Технологическая компания, рекламные и облачные сервисы для бизнеса." },
     { name: "Медрокет", description: "Платформа для автоматизации медицинских клиник и центров." },
     { name: "Nekassir", description: "Облачные кассовые решения для малого и среднего бизнеса." },
-    { name: "Premium Bonus", description: "Платформа для программ лояльности и бонусных систем." }
+    { name: "Premium Bonus", description: "Платформа для программ лояльности и бонусных систем." },
+    { name: "Mobidel", description: "Разработчик мобильных решений для ресторанного бизнеса." },
+    { name: "Open Service", description: "Комплексные IT-решения для автоматизации сервисных процессов." },
+    { name: "ITS Group", description: "Системный интегратор и поставщик IT-решений для бизнеса." },
+    { name: "И многие другие", description: "Более 70 компаний уже доверяют нам развитие своего партнерского канала." }
   ];
 
   const testimonials = [
@@ -93,7 +97,7 @@ const Partners: React.FC = () => {
     }
   ];
 
-  React.useEffect(() => {
+  useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
     }, 5000);
@@ -122,21 +126,33 @@ const Partners: React.FC = () => {
 
               {/* Stats Grid */}
               <div className="grid grid-cols-2 gap-4 mb-8">
-                <div className="bg-white p-4 rounded-xl border border-gray-200 text-center">
-                  <div className="text-2xl font-extrabold text-[#0D6EFD]">70+</div>
-                  <div className="text-sm text-gray-600">партнеров</div>
+                <div className="group bg-white p-4 rounded-xl border border-gray-200 text-center transition-all duration-300 hover:shadow-lg hover:scale-105 cursor-pointer overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-transparent to-indigo-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="relative z-10">
+                    <div className="text-2xl font-extrabold text-[#0D6EFD] group-hover:scale-110 transition-transform duration-300">70+</div>
+                    <div className="text-sm text-gray-600 group-hover:text-gray-700 transition-colors duration-300">партнеров</div>
+                  </div>
                 </div>
-                <div className="bg-white p-4 rounded-xl border border-gray-200 text-center">
-                  <div className="text-2xl font-extrabold text-[#0D6EFD]">35%</div>
-                  <div className="text-sm text-gray-600">до 35% комиссии</div>
+                <div className="group bg-white p-4 rounded-xl border border-gray-200 text-center transition-all duration-300 hover:shadow-lg hover:scale-105 cursor-pointer overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-transparent to-indigo-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="relative z-10">
+                    <div className="text-2xl font-extrabold text-[#0D6EFD] group-hover:scale-110 transition-transform duration-300">35%</div>
+                    <div className="text-sm text-gray-600 group-hover:text-gray-700 transition-colors duration-300">до 35% комиссии</div>
+                  </div>
                 </div>
-                <div className="bg-white p-4 rounded-xl border border-gray-200 text-center">
-                  <div className="text-2xl font-extrabold text-[#0D6EFD]">65к/мес</div>
-                  <div className="text-sm text-gray-600">средний доход партнёра</div>
+                <div className="group bg-white p-4 rounded-xl border border-gray-200 text-center transition-all duration-300 hover:shadow-lg hover:scale-105 cursor-pointer overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-transparent to-indigo-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="relative z-10">
+                    <div className="text-2xl font-extrabold text-[#0D6EFD] group-hover:scale-110 transition-transform duration-300">65K</div>
+                    <div className="text-sm text-gray-600 group-hover:text-gray-700 transition-colors duration-300">средний доход</div>
+                  </div>
                 </div>
-                <div className="bg-white p-4 rounded-xl border border-gray-200 text-center">
-                  <div className="text-2xl font-extrabold text-[#0D6EFD]">1,4 млн</div>
-                  <div className="text-sm text-gray-600">Заработал топ-партнер</div>
+                <div className="group bg-white p-4 rounded-xl border border-gray-200 text-center transition-all duration-300 hover:shadow-lg hover:scale-105 cursor-pointer overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-transparent to-indigo-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="relative z-10">
+                    <div className="text-2xl font-extrabold text-[#0D6EFD] group-hover:scale-110 transition-transform duration-300">1,4M</div>
+                    <div className="text-sm text-gray-600 group-hover:text-gray-700 transition-colors duration-300">заработал топ-партнер</div>
+                  </div>
                 </div>
               </div>
 

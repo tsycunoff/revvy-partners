@@ -1,14 +1,13 @@
-
-import * as React from 'react';
+import React, { useState } from 'react';
 
 const HowItWorks: React.FC = () => {
-  const [activeModel, setActiveModel] = React.useState<'referral' | 'agent'>('referral');
+  const [activeModel, setActiveModel] = useState<'referral' | 'agent'>('referral');
 
   const referralSteps = [
     {
       icon: (
         <svg className="w-8 h-8 text-[#0D6EFD]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
         </svg>
       ),
       title: 'Передаёте лид',
@@ -85,23 +84,44 @@ const HowItWorks: React.FC = () => {
   const StepCard: React.FC<{ icon: React.ReactNode; title: string; description: string; index: number }> = ({ 
     icon, title, description, index 
   }) => (
-    <div className="relative bg-white p-6 rounded-2xl border border-gray-200 shadow-sm transition-all duration-300 hover:shadow-lg hover:scale-105 group">
-      <div className="absolute -top-3 -left-3 w-8 h-8 bg-[#0D6EFD] text-white rounded-full flex items-center justify-center text-sm font-bold">
-        {index + 1}
-      </div>
+    <div className="group relative bg-white p-8 rounded-3xl border border-gray-200 shadow-sm transition-all duration-500 hover:shadow-2xl hover:scale-105 cursor-pointer overflow-hidden">
+      {/* Animated Background Gradient */}
+      <div className={`absolute inset-0 bg-gradient-to-br from-blue-50 via-transparent to-indigo-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
       
-      <div className="mb-4 transform transition-transform duration-300 group-hover:scale-110">
-        <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto group-hover:bg-[#0D6EFD] transition-colors duration-300">
-          <div className="group-hover:[&>svg]:text-white transition-colors duration-300">
-            {icon}
+      {/* Floating Orb */}
+      <div className={`absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-blue-400/20 to-indigo-400/20 rounded-full blur-xl transition-all duration-700 group-hover:scale-150 group-hover:opacity-100 opacity-0`}></div>
+
+      <div className="relative z-10">
+        <div className="absolute -top-3 -left-3 w-8 h-8 bg-[#0D6EFD] text-white rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 group-hover:scale-110">
+          {index + 1}
+        </div>
+        
+        <div className="mb-6 transform transition-transform duration-300 group-hover:scale-110">
+          <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-blue-50 rounded-2xl flex items-center justify-center mx-auto group-hover:shadow-lg transition-all duration-300 group-hover:from-[#0D6EFD] group-hover:to-blue-600">
+            <div className="group-hover:[&>svg]:text-white transition-colors duration-300">
+              {icon}
+            </div>
+            {/* Icon Glow Effect */}
+            <div className={`absolute inset-0 bg-gradient-to-br from-[#0D6EFD]/20 to-blue-400/20 rounded-2xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
           </div>
         </div>
+        
+        <h3 className="text-xl font-bold mb-3 text-gray-900 group-hover:text-[#0D6EFD] transition-colors duration-300">
+          {title}
+        </h3>
+        <p className="text-gray-600 text-sm leading-relaxed group-hover:text-gray-700 transition-colors duration-300">{description}</p>
+
+        {/* Hover Indicator */}
+        <div className={`mt-4 flex items-center text-[#0D6EFD] font-medium text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-x-0 translate-x-4`}>
+          <span>Подробнее</span>
+          <svg className="w-4 h-4 ml-1 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </div>
       </div>
-      
-      <h3 className="text-lg font-bold mb-3 text-gray-900 group-hover:text-[#0D6EFD] transition-colors duration-300">
-        {title}
-      </h3>
-      <p className="text-gray-600 text-sm leading-relaxed">{description}</p>
+
+      {/* Border Animation */}
+      <div className={`absolute inset-0 rounded-3xl border-2 border-[#0D6EFD] opacity-0 group-hover:opacity-20 transition-opacity duration-300`}></div>
     </div>
   );
 
@@ -121,7 +141,7 @@ const HowItWorks: React.FC = () => {
             Выберите подходящую модель работы
           </h2>
           <p className="max-w-3xl mx-auto text-lg text-gray-600 leading-relaxed">
-            Две схемы сотрудничества для разных потребностей и возможностей
+            Две модели сотрудничества для разных потребностей и возможностей
           </p>
         </div>
 

@@ -1,8 +1,7 @@
-
-import * as React from 'react';
+import React, { useState } from 'react';
 
 const CallToAction: React.FC = () => {
-  const [formData, setFormData] = React.useState({
+  const [formData, setFormData] = useState({
     name: '',
     email: '',
     company: '',
@@ -10,8 +9,8 @@ const CallToAction: React.FC = () => {
     channel: '',
     message: ''
   });
-  const [isSubmitting, setIsSubmitting] = React.useState(false);
-  const [isSubmitted, setIsSubmitted] = React.useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const channels = [
     'Маркетинговое агентство',
@@ -104,8 +103,9 @@ const CallToAction: React.FC = () => {
                   }
                 ].map((benefit, index) => (
                   <div key={index} className="flex items-start space-x-4 group">
-                    <div className="flex-shrink-0 w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-xl group-hover:bg-[#0D6EFD] group-hover:scale-110 transition-all duration-300">
-                      <span className="group-hover:filter group-hover:grayscale group-hover:brightness-0 group-hover:invert transition-all duration-300">
+                    <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl flex items-center justify-center text-xl group-hover:bg-gradient-to-br group-hover:from-[#0D6EFD] group-hover:to-blue-600 group-hover:scale-110 transition-all duration-300 relative overflow-hidden">
+                      <div className="absolute inset-0 bg-gradient-to-br from-[#0D6EFD]/20 to-blue-400/20 rounded-xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <span className="relative z-10 group-hover:grayscale group-hover:brightness-0 group-hover:invert transition-all duration-300">
                         {benefit.icon}
                       </span>
                     </div>
@@ -113,7 +113,7 @@ const CallToAction: React.FC = () => {
                       <h4 className="font-semibold text-gray-900 group-hover:text-[#0D6EFD] transition-colors duration-300">
                         {benefit.title}
                       </h4>
-                      <p className="text-gray-600 text-sm">{benefit.description}</p>
+                      <p className="text-gray-600 text-sm group-hover:text-gray-700 transition-colors duration-300">{benefit.description}</p>
                     </div>
                   </div>
                 ))}
@@ -122,31 +122,39 @@ const CallToAction: React.FC = () => {
 
             {/* Trust Indicators */}
             <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-6 border border-blue-200">
-              <h4 className="font-bold text-gray-900 mb-4">Почему нам доверяют:</h4>
-              <div className="grid grid-cols-2 gap-4 text-sm">
-                <div className="flex items-center text-gray-600">
-                  <svg className="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  Более 70 партнеров
+              <h4 className="font-bold text-gray-900 mb-4">Почему выбирают нас:</h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                <div className="flex items-center text-gray-600 group">
+                  <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3 group-hover:bg-green-200 transition-colors duration-300">
+                    <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <span className="group-hover:text-gray-700 transition-colors duration-300">Более 70 активных партнеров</span>
                 </div>
-                <div className="flex items-center text-gray-600">
-                  <svg className="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  ₽2.5M+ выплачено
+                <div className="flex items-center text-gray-600 group">
+                  <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3 group-hover:bg-blue-200 transition-colors duration-300">
+                    <svg className="w-4 h-4 text-[#0D6EFD]" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <span className="group-hover:text-gray-700 transition-colors duration-300">Топ-партнер заработал 1,4 млн ₽</span>
                 </div>
-                <div className="flex items-center text-gray-600">
-                  <svg className="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  Быстрые выплаты
+                <div className="flex items-center text-gray-600 group">
+                  <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mr-3 group-hover:bg-purple-200 transition-colors duration-300">
+                    <svg className="w-4 h-4 text-purple-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <span className="group-hover:text-gray-700 transition-colors duration-300">Быстрые ежемесячные выплаты</span>
                 </div>
-                <div className="flex items-center text-gray-600">
-                  <svg className="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  Прозрачная отчетность
+                <div className="flex items-center text-gray-600 group">
+                  <div className="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center mr-3 group-hover:bg-indigo-200 transition-colors duration-300">
+                    <svg className="w-4 h-4 text-indigo-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <span className="group-hover:text-gray-700 transition-colors duration-300">Прозрачная PRM-отчетность</span>
                 </div>
               </div>
             </div>

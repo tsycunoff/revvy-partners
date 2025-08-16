@@ -1,11 +1,10 @@
-
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Header: React.FC = () => {
-  const [isScrolled, setIsScrolled] = React.useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
@@ -67,10 +66,22 @@ const Header: React.FC = () => {
           {/* CTA Buttons */}
           <div className="flex items-center space-x-4">
             <a 
-              href="#" 
+              href="https://revvy.prmonline.ru" 
+              target="_blank"
+              rel="noopener noreferrer"
               className="hidden sm:block text-gray-600 hover:text-[#0D6EFD] transition-all duration-300 font-medium relative group"
             >
               Вход
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#0D6EFD] transition-all duration-300 group-hover:w-full"></span>
+            </a>
+
+            <a 
+              href="https://revvy.ai" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden md:block text-gray-600 hover:text-[#0D6EFD] transition-all duration-300 font-medium relative group"
+            >
+              Основной сайт
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#0D6EFD] transition-all duration-300 group-hover:w-full"></span>
             </a>
             
@@ -124,10 +135,20 @@ const Header: React.FC = () => {
             ))}
             <div className="pt-2 mt-2 border-t border-gray-200/50">
               <a
-                href="#"
+                href="https://revvy.prmonline.ru"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="block px-4 py-2 text-gray-600 hover:text-[#0D6EFD] hover:bg-blue-50 rounded-lg transition-all duration-300 font-medium"
               >
                 Вход
+              </a>
+              <a
+                href="https://revvy.ai"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block px-4 py-2 text-gray-600 hover:text-[#0D6EFD] hover:bg-blue-50 rounded-lg transition-all duration-300 font-medium"
+              >
+                Основной сайт
               </a>
             </div>
           </nav>

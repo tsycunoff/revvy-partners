@@ -1,5 +1,5 @@
 
-import * as React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 interface FAQItemProps {
   question: string;
@@ -10,10 +10,10 @@ interface FAQItemProps {
 }
 
 const FAQItem: React.FC<FAQItemProps> = ({ question, answer, isOpen, onClick, index }) => {
-  const contentRef = React.useRef<HTMLDivElement>(null);
-  const [contentHeight, setContentHeight] = React.useState(0);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [contentHeight, setContentHeight] = useState(0);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (contentRef.current) {
       setContentHeight(contentRef.current.scrollHeight);
     }
@@ -99,10 +99,10 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer, isOpen, onClick, in
 };
 
 const FAQ: React.FC = () => {
-  const [openIndex, setOpenIndex] = React.useState<number | null>(0);
-  const [isVisible, setIsVisible] = React.useState(false);
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [isVisible, setIsVisible] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -160,7 +160,7 @@ const FAQ: React.FC = () => {
       answer: 'Статус партнёра деактивируется, и выплаты по текущим клиентам прекращаются.',
     },
     {
-      question: 'Можно ли отслеживать эффективность разных каналов?',
+      question: 'Можно ли отслеживать разные каналы продвижения?',
       answer: 'Конечно! Вы можете создавать различные UTM-метки для разных каналов продвижения и отслеживать их эффективность отдельно. В личном кабинете доступна подробная аналитика по источникам трафика, конверсиям и доходности каждого канала.',
     },
     {
@@ -238,11 +238,13 @@ const FAQ: React.FC = () => {
                 </a>
                 
                 <a
-                  href="#"
+                  href="https://t.me/VTsykunov"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="group flex items-center px-6 py-3 bg-white border border-gray-300 text-gray-700 font-semibold rounded-xl hover:bg-gray-50 hover:shadow-md transition-all duration-300"
                 >
-                  <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M18.384,22.779c0.322,0.228 0.737,0.285 1.107,0.145c0.37,-0.141 0.642,-0.457 0.724,-0.84c0.869,-4.084 0.869,-7.314 0,-11.398c-0.082,-0.383 -0.354,-0.699 -0.724,-0.84c-0.37,-0.141 -0.785,-0.083 -1.107,0.145L12,14.779L5.616,9.991c-0.322,-0.228 -0.737,-0.285 -1.107,-0.145C4.139,10.006 3.867,10.322 3.785,10.705c-0.869,4.084 -0.869,7.314 0,11.398c0.082,0.383 0.354,0.699 0.724,0.84c0.37,0.141 0.785,0.083 1.107,-0.145L12,17.221L18.384,22.779z"/>
+                  <svg className="w-4 h-4 mr-2 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
                   </svg>
                   Telegram
                 </a>
