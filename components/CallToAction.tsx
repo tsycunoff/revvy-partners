@@ -105,7 +105,7 @@ const CallToAction: React.FC = () => {
                   <div key={index} className="flex items-start space-x-4 group">
                     <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl flex items-center justify-center text-xl group-hover:bg-gradient-to-br group-hover:from-[#0D6EFD] group-hover:to-blue-600 group-hover:scale-110 transition-all duration-300 relative overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-br from-[#0D6EFD]/20 to-blue-400/20 rounded-xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      <span className="relative z-10 group-hover:grayscale group-hover:brightness-0 group-hover:invert transition-all duration-300">
+                      <span className="relative z-10 transition-all duration-300 group-hover:text-white">
                         {benefit.icon}
                       </span>
                     </div>

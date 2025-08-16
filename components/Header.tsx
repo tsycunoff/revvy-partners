@@ -14,6 +14,7 @@ const Header: React.FC = () => {
   }, []);
 
   const navItems = [
+    { href: "https://revvy.ai", label: "Основной сайт", external: true },
     { href: "#how-it-works", label: "Как работает" },
     { href: "#benefits", label: "Преимущества" },
     { href: "#calculator", label: "Калькулятор" },
@@ -54,6 +55,7 @@ const Header: React.FC = () => {
               <a
                 key={item.href}
                 href={item.href}
+                {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 className="relative text-gray-600 hover:text-[#0D6EFD] transition-all duration-300 font-medium group"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
@@ -72,16 +74,6 @@ const Header: React.FC = () => {
               className="hidden sm:block text-gray-600 hover:text-[#0D6EFD] transition-all duration-300 font-medium relative group"
             >
               Вход
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#0D6EFD] transition-all duration-300 group-hover:w-full"></span>
-            </a>
-
-            <a 
-              href="https://revvy.ai" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden md:block text-gray-600 hover:text-[#0D6EFD] transition-all duration-300 font-medium relative group"
-            >
-              Основной сайт
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#0D6EFD] transition-all duration-300 group-hover:w-full"></span>
             </a>
             
@@ -126,6 +118,7 @@ const Header: React.FC = () => {
               <a
                 key={item.href}
                 href={item.href}
+                {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 className="block px-4 py-2 text-gray-600 hover:text-[#0D6EFD] hover:bg-blue-50 rounded-lg transition-all duration-300 font-medium"
                 onClick={() => setIsMobileMenuOpen(false)}
                 style={{ animationDelay: `${index * 50}ms` }}
@@ -141,14 +134,6 @@ const Header: React.FC = () => {
                 className="block px-4 py-2 text-gray-600 hover:text-[#0D6EFD] hover:bg-blue-50 rounded-lg transition-all duration-300 font-medium"
               >
                 Вход
-              </a>
-              <a
-                href="https://revvy.ai"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block px-4 py-2 text-gray-600 hover:text-[#0D6EFD] hover:bg-blue-50 rounded-lg transition-all duration-300 font-medium"
-              >
-                Основной сайт
               </a>
             </div>
           </nav>

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 
 interface PartnerCardProps {
@@ -30,7 +29,11 @@ const PartnerCard: React.FC<PartnerCardProps> = ({ name, description, delay = 0 
         {/* Front Side */}
         <div className="absolute inset-0 backface-hidden bg-white rounded-2xl shadow-sm border border-gray-200 flex items-center justify-center p-4 group-hover:shadow-lg transition-shadow duration-300">
           <div className="text-center">
-            <h3 className="text-lg font-bold text-gray-700 group-hover:text-[#0D6EFD] transition-colors duration-300">
+            <h3 className={`text-lg font-bold transition-colors duration-300 ${
+              name === "И многие другие" 
+                ? "text-[#0D6EFD] group-hover:text-blue-700" 
+                : "text-gray-700 group-hover:text-[#0D6EFD]"
+            }`}>
               {name}
             </h3>
             <div className="w-12 h-0.5 bg-gradient-to-r from-[#0D6EFD] to-blue-400 mx-auto mt-2 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
@@ -42,6 +45,44 @@ const PartnerCard: React.FC<PartnerCardProps> = ({ name, description, delay = 0 
           <p className="text-sm text-center leading-relaxed opacity-95">
             {description}
           </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const AnimatedStatCard: React.FC<{ 
+  value: string; 
+  label: string; 
+  delay?: number;
+}> = ({ value, label, delay = 0 }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsVisible(true), delay);
+    return () => clearTimeout(timer);
+  }, [delay]);
+
+  return (
+    <div 
+      className={`group bg-white p-4 rounded-xl border border-gray-200 text-center transition-all duration-500 cursor-pointer overflow-hidden ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+      } hover:shadow-lg hover:scale-105`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className={`absolute inset-0 bg-gradient-to-br from-blue-50 via-transparent to-indigo-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+      <div className="relative z-10">
+        <div className={`text-2xl font-extrabold text-[#0D6EFD] transition-all duration-300 ${
+          isHovered ? 'scale-110' : ''
+        }`}>
+          {value}
+        </div>
+        <div className={`text-sm text-gray-600 transition-colors duration-300 ${
+          isHovered ? 'text-gray-700' : ''
+        }`}>
+          {label}
         </div>
       </div>
     </div>
@@ -126,34 +167,26 @@ const Partners: React.FC = () => {
 
               {/* Stats Grid */}
               <div className="grid grid-cols-2 gap-4 mb-8">
-                <div className="group bg-white p-4 rounded-xl border border-gray-200 text-center transition-all duration-300 hover:shadow-lg hover:scale-105 cursor-pointer overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-transparent to-indigo-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div className="relative z-10">
-                    <div className="text-2xl font-extrabold text-[#0D6EFD] group-hover:scale-110 transition-transform duration-300">70+</div>
-                    <div className="text-sm text-gray-600 group-hover:text-gray-700 transition-colors duration-300">партнеров</div>
-                  </div>
-                </div>
-                <div className="group bg-white p-4 rounded-xl border border-gray-200 text-center transition-all duration-300 hover:shadow-lg hover:scale-105 cursor-pointer overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-transparent to-indigo-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div className="relative z-10">
-                    <div className="text-2xl font-extrabold text-[#0D6EFD] group-hover:scale-110 transition-transform duration-300">35%</div>
-                    <div className="text-sm text-gray-600 group-hover:text-gray-700 transition-colors duration-300">до 35% комиссии</div>
-                  </div>
-                </div>
-                <div className="group bg-white p-4 rounded-xl border border-gray-200 text-center transition-all duration-300 hover:shadow-lg hover:scale-105 cursor-pointer overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-transparent to-indigo-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div className="relative z-10">
-                    <div className="text-2xl font-extrabold text-[#0D6EFD] group-hover:scale-110 transition-transform duration-300">65K</div>
-                    <div className="text-sm text-gray-600 group-hover:text-gray-700 transition-colors duration-300">средний доход</div>
-                  </div>
-                </div>
-                <div className="group bg-white p-4 rounded-xl border border-gray-200 text-center transition-all duration-300 hover:shadow-lg hover:scale-105 cursor-pointer overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-transparent to-indigo-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div className="relative z-10">
-                    <div className="text-2xl font-extrabold text-[#0D6EFD] group-hover:scale-110 transition-transform duration-300">1,4M</div>
-                    <div className="text-sm text-gray-600 group-hover:text-gray-700 transition-colors duration-300">заработал топ-партнер</div>
-                  </div>
-                </div>
+                <AnimatedStatCard 
+                  value="70+" 
+                  label="партнеров" 
+                  delay={100}
+                />
+                <AnimatedStatCard 
+                  value="35%" 
+                  label="до 35% комиссии" 
+                  delay={200}
+                />
+                <AnimatedStatCard 
+                  value="65K" 
+                  label="средний доход" 
+                  delay={300}
+                />
+                <AnimatedStatCard 
+                  value="1,4M" 
+                  label="заработал топ-партнер" 
+                  delay={400}
+                />
               </div>
 
               {/* Testimonial Carousel */}
