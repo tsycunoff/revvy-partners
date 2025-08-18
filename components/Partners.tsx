@@ -93,7 +93,7 @@ const Partners: React.FC = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
   const partnerList = [
-    { name: "Starter", description: "Приложение для программ лояльности и маркетинга для ресторанов." },
+    { name: "Starter", description: "приложение и сайт для собственной доставки ресторанов." },
     { name: "Get it", description: "Платформа для автоматизации доставки и логистики в ресторанном бизнесе." },
     { name: "Лемма", description: "Разработчик программного обеспечения для автоматизации ресторанного бизнеса и ритейла." },
     { name: "Docs in Box", description: "Сервис электронного документооборота для поставщиков HoReCa." },

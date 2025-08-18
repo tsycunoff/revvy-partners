@@ -79,20 +79,20 @@ const Hero: React.FC = () => {
 
         {/* Key Stats */}
         <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-3xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
-          <div className="text-center">
-            <div className="text-3xl font-extrabold text-[#0D6EFD]">35%</div>
+          <div className="text-center flex flex-col items-center">
+            <div className="text-3xl font-extrabold text-[#0D6EFD] h-12 flex items-center justify-center">35%</div>
             <div className="text-sm text-gray-600">комиссия*</div>
           </div>
-          <div className="text-center">
-            <div className="w-12 h-12 mx-auto bg-gradient-to-r from-[#0D6EFD] to-blue-600 rounded-xl flex items-center justify-center mb-2">
-              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+          <div className="text-center flex flex-col items-center">
+            <div className="h-12 flex items-center justify-center">
+              <svg className="w-9 h-9 text-[#0D6EFD]" viewBox="0 0 1024 1024" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M492 176.6c-9.9 1.2-26.7 4.9-36.1 8.0-13.7 4.4-35.8 15.5-47.9 24.1-12.3 8.8-34.6 31.1-43.2 43.3-12.9 18.2-23.9 43.2-28.2 64.0-3.1 15.2-3.6 25.2-3.6 68.5v44.1l-5.9-0.4c-8.8-0.6-20.0 2.2-31.9 8.0-16.6 8.1-30.1 22.3-36.7 38.7-5.7 14.0-5.6 9.4-5.3 148.6l0.3 128.0 2.7 8.0c9.2 26.7 29.2 45.4 55.8 52.1 7.2 1.8 14.6 1.9 199.5 1.9 215.5 0 198.7 0.6 215.1-7.4 21.4-10.4 35.2-27.5 41.7-51.6 2.1-7.9 2.1-8.9 2.3-118.5 0-60.8-0.2-119.1-0.6-129.5-0.6-17.0-1.0-19.8-3.4-27.0-7.0-20.6-21.7-36.1-42.6-45.2-8.1-3.5-24.5-6.8-29.7-6.0l-3.1 0.5-0.5-49.6c-0.4-49.2-0.4-49.8-3.0-61.8-3.5-16.1-7.5-27.2-15.2-42.9-8.3-16.7-17.2-29.0-31.5-43.8-26.7-27.7-57.0-44.2-94.5-51.7-8.7-1.8-15.2-2.3-31.0-2.5-11.0-0.2-21.6-0.1-23.5 0.1zm32.5 65.5c24.4 3.0 47.7 14.1 65.4 31.3 18.3 17.7 29.1 36.8 34.3 61.1 0.9 4.4 1.3 17.9 1.3 50.0v44.0l-113.4 0-113.5 0 0.1-43.5c0.1-39.5 0.3-44.4 2.1-53.1 4.4-21.2 13.8-38.4 30.2-54.9 10.7-10.8 19.1-17.0 31.5-23.3 9.4-4.7 23.3-9.2 32.5-10.6 4.1-0.6 8.6-1.3 10.0-1.5 5.1-0.7 10.7-0.6 19.5 0.5zm5.8 285.2c10.6 5.2 18.3 13.1 23.8 24.1 3.9 7.9 4.2 9.3 4.7 18.4 0.8 17.0-4.0 28.5-17.1 40.8-4.3 4.0-8.3 7.4-8.9 7.4-0.5 0-0.7 0.8-0.4 1.7 0.9 3.2 11.6 90.0 11.6 94.5 0 2.4-0.7 5.4-1.6 6.6-3.3 4.8-5.6 5.2-31.1 5.2-21.5 0-24.1-0.2-26.9-1.9-6.4-3.9-6.4-3.2 0-56.9 5.0-42.2 5.6-48.6 4.3-49.4-4.7-2.6-13.0-10.6-16.5-15.8-14.1-21.0-11.6-46.8 6.2-64.6 10.5-10.5 20.4-14.5 34.7-14.1 8.8 0.2 10.3 0.6 17.2 4.0z"/>
               </svg>
             </div>
             <div className="text-sm text-gray-600">закрепление сделок</div>
           </div>
-          <div className="text-center">
-            <div className="text-3xl font-extrabold text-[#0D6EFD]">∞</div>
+          <div className="text-center flex flex-col items-center">
+            <div className="text-3xl font-extrabold text-[#0D6EFD] h-12 flex items-center justify-center">∞</div>
             <div className="text-sm text-gray-600">пожизненно</div>
           </div>
         </div>
