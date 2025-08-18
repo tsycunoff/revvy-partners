@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 
 interface FAQItemProps {
@@ -27,7 +26,7 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer, isOpen, onClick, in
       style={{ animationDelay: `${index * 100}ms` }}
     >
       <button
-        className="w-full flex justify-between items-center text-left p-6 focus:outline-none focus:ring-2 focus:ring-[#0D6EFD] focus:ring-opacity-50 rounded-2xl"
+        className="w-full flex justify-between items-center text-left p-6 focus:outline-none rounded-2xl"
         onClick={onClick}
       >
         <div className="flex items-center flex-1">
