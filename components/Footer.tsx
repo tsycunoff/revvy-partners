@@ -5,7 +5,19 @@ const Footer: React.FC = () => {
 
   const footerLinks = {
     product: [
-      { name: 'Возможности', href: 'https://revvy.ai/features' },
+      { 
+        name: 'Возможности', 
+        href: '#',
+        submenu: [
+          { name: 'Продвижение на картах', href: 'https://revvy.ai/prodvizhenie-na-onlayn-kartakh' },
+          { name: 'Перехват негатива', href: 'https://revvy.ai/perehvat-negativnyh-otzyvov' },
+          { name: 'Маркетинговые рассылки', href: 'https://revvy.ai/marketingovaya-rassylka' },
+          { name: 'Допродажи', href: 'https://revvy.ai/doprodazhi' },
+          { name: 'Автоматические уведомления', href: 'https://revvy.ai/avtomaticheskie-uvedomleniya' },
+          { name: 'Агрегация отзывов', href: 'https://revvy.ai/agregaciya-otzyvov' },
+          { name: 'Виджет с отзывами', href: 'https://revvy.ai/vidget' }
+        ]
+      },
       { name: 'Интеграции', href: 'https://revvy.ai/crm' },
       { name: 'Тарифы', href: 'https://revvy.ai/pricing' },
       { name: 'Кейсы клиентов', href: 'https://revvy.ai/cases' }
@@ -68,6 +80,8 @@ const Footer: React.FC = () => {
       )
     }
   ];
+
+  const [expandedSubmenu, setExpandedSubmenu] = React.useState<string | null>(null);
 
   return (
     <footer className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white">
@@ -151,15 +165,54 @@ const Footer: React.FC = () => {
             <ul className="space-y-2">
               {footerLinks.product.map((link) => (
                 <li key={link.name}>
-                  <a
-                    href={link.href}
-                    className="text-gray-400 hover:text-[#0D6EFD] transition-colors duration-300 text-sm group flex items-center"
-                  >
-                    {link.name}
-                    <svg className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                  </a>
+                  {link.submenu ? (
+                    <div>
+                      <button
+                        onClick={() => setExpandedSubmenu(expandedSubmenu === link.name ? null : link.name)}
+                        className="text-gray-400 hover:text-[#0D6EFD] transition-colors duration-300 text-sm group flex items-center w-full text-left"
+                      >
+                        {link.name}
+                        <svg 
+                          className={`w-3 h-3 ml-1 transition-transform duration-300 ${
+                            expandedSubmenu === link.name ? 'rotate-180' : ''
+                          }`} 
+                          fill="none" 
+                          stroke="currentColor" 
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+                      {expandedSubmenu === link.name && (
+                        <ul className="ml-4 mt-2 space-y-1">
+                          {link.submenu.map((sublink) => (
+                            <li key={sublink.name}>
+                              <a
+                                href={sublink.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-gray-500 hover:text-[#0D6EFD] transition-colors duration-300 text-xs block"
+                              >
+                                {sublink.name}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  ) : (
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-400 hover:text-[#0D6EFD] transition-colors duration-300 text-sm group flex items-center"
+                    >
+                      {link.name}
+                      <svg className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
@@ -203,7 +256,7 @@ const Footer: React.FC = () => {
                   >
                     {link.name}
                     {link.href.startsWith('mailto:') && (
-                      <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-3 h-3 ml-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                       </svg>
                     )}
@@ -223,6 +276,8 @@ const Footer: React.FC = () => {
                 <li key={link.name}>
                   <a
                     href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-gray-400 hover:text-[#0D6EFD] transition-colors duration-300 text-sm group flex items-center"
                   >
                     {link.name}
@@ -266,34 +321,37 @@ const Footer: React.FC = () => {
         </div>
       </div>
 
-      {/* Bottom Section */}
+      {/* Bottom Section - ИДЕАЛЬНО оформленная правовая информация */}
       <div className="border-t border-gray-700 bg-gray-900">
-        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm text-gray-400">
-              <div className="flex flex-col items-center md:items-start">
-                <p>&copy; {currentYear} Revvy.ai. Все права защищены.</p>
-                <div className="text-xs text-gray-500 mt-1">
-                  <p>ООО "Ревви" • support@revvy.ai • +7 (843) 212-27-93</p>
-                  <p>ИНН: 7811751392 • ОГРН: 1207800125180</p>
-                </div>
+        <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row justify-between items-center space-y-3 lg:space-y-0">
+            {/* Left - Copyright & Company Info */}
+            <div className="text-center lg:text-left">
+              <div className="text-sm text-gray-400 mb-1">
+                &copy; {currentYear} Revvy.ai. Все права защищены.
               </div>
-              <div className="flex flex-wrap justify-center md:justify-start space-x-4 mt-2 md:mt-0">
-                <a href="https://revvy.ai/policy" target="_blank" rel="noopener noreferrer" className="hover:text-[#0D6EFD] transition-colors duration-300">
-                  Политика конфиденциальности
-                </a>
-                <a href="https://revvy.ai/user_manual" target="_blank" rel="noopener noreferrer" className="hover:text-[#0D6EFD] transition-colors duration-300">
-                  Руководство пользователя
-                </a>
-                <a href="https://revvy.ai/oferta" target="_blank" rel="noopener noreferrer" className="hover:text-[#0D6EFD] transition-colors duration-300">
-                  Договор оферты
-                </a>
+              <div className="text-xs text-gray-500">
+                ООО "Ревви" • support@revvy.ai • +7 (843) 212-27-93 • ИНН: 7811751392 • ОГРН: 1207800125180
               </div>
             </div>
+
+            {/* Center - Legal Links */}
+            <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs">
+              <a href="https://revvy.ai/policy" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#0D6EFD] transition-colors duration-300">
+                Политика конфиденциальности
+              </a>
+              <a href="https://revvy.ai/user_manual" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#0D6EFD] transition-colors duration-300">
+                Руководство пользователя
+              </a>
+              <a href="https://revvy.ai/oferta" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#0D6EFD] transition-colors duration-300">
+                Договор оферты
+              </a>
+            </div>
             
-            <div className="mt-4 md:mt-0 flex items-center text-sm text-gray-400">
+            {/* Right - Made with Love */}
+            <div className="flex items-center text-xs text-gray-400">
               <span>Сделано с</span>
-              <svg className="w-4 h-4 mx-1 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+              <svg className="w-3 h-3 mx-1 text-red-500" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
               </svg>
               <span>в Москве</span>
