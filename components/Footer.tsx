@@ -169,7 +169,7 @@ const Footer: React.FC = () => {
                     <div>
                       <button
                         onClick={() => setExpandedSubmenu(expandedSubmenu === link.name ? null : link.name)}
-                        className="text-gray-400 hover:text-[#0D6EFD] transition-colors duration-300 text-sm group flex items-center w-full text-left"
+                        className="text-gray-400 hover:text-[#0D6EFD] transition-colors duration-300 text-sm group flex items-center w-full text-left focus:outline-none focus:ring-0 focus:border-none"
                       >
                         {link.name}
                         <svg 
