@@ -203,9 +203,7 @@ const HowItWorks: React.FC = () => {
         {/* Header */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-700 text-sm font-medium rounded-full mb-6">
-            <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
+            <div className="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
             Как это работает
           </div>
           
@@ -221,7 +219,7 @@ const HowItWorks: React.FC = () => {
             <div className="bg-gray-100 p-1 rounded-2xl inline-flex">
               <button
                 onClick={() => setActiveModel('referral')}
-                className={`px-8 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                className={`px-8 py-3 rounded-xl font-semibold transition-all duration-300 focus:outline-none ${
                   activeModel === 'referral'
                     ? 'bg-white text-[#0D6EFD] shadow-md'
                     : 'text-gray-600 hover:text-gray-900'
@@ -231,7 +229,7 @@ const HowItWorks: React.FC = () => {
               </button>
               <button
                 onClick={() => setActiveModel('agent')}
-                className={`px-8 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                className={`px-8 py-3 rounded-xl font-semibold transition-all duration-300 focus:outline-none ${
                   activeModel === 'agent'
                     ? 'bg-white text-[#0D6EFD] shadow-md'
                     : 'text-gray-600 hover:text-gray-900'

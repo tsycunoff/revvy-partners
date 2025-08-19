@@ -30,8 +30,8 @@ const Footer: React.FC = () => {
     ],
     support: [
       { name: 'База знаний', href: 'https://revvy-space.teamly.ru/space/f78ffc25-eaa9-441f-b7e9-3311826de74b/article/397714f8-b27d-4d35-a5dc-180a233fc2f8' },
-      { name: 'Техподдержка', href: 'mailto:support@revvy.ai' },
-      { name: 'Партнерская поддержка', href: 'mailto:partners@revvy.ai' },
+      { name: 'Техподдержка', href: 'mailto:support@revvy.ai', email: true },
+      { name: 'Партнерская поддержка', href: 'mailto:partners@revvy.ai', email: true },
       { name: 'API документация', href: 'https://revvy-space.teamly.ru/space/f78ffc25-eaa9-441f-b7e9-3311826de74b/article/13472cfa-48c1-43f8-8a1d-a5bc622213a1' }
     ],
     company: [
@@ -242,7 +242,7 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Support Links */}
+          {/* Support Links - ПРАВИЛЬНАЯ СТРУКТУРА КАК У GEMINI */}
           <div>
             <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4">
               Поддержка
@@ -252,12 +252,12 @@ const Footer: React.FC = () => {
                 <li key={link.name}>
                   <a
                     href={link.href}
-                    className="text-gray-400 hover:text-[#0D6EFD] transition-colors duration-300 text-sm group flex items-center"
+                    className="text-gray-400 hover:text-[#0D6EFD] transition-colors duration-300 text-sm whitespace-nowrap"
                   >
                     {link.name}
-                    {link.href.startsWith('mailto:') && (
-                      <svg className="w-3 h-3 ml-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    {link.email && (
+                      <svg className="inline-block w-3 h-3 ml-1.5 align-middle text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                       </svg>
                     )}
                   </a>
